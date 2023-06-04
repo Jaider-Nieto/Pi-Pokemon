@@ -41,7 +41,6 @@ sequelize.models = Object.fromEntries(capsEntries);
 // Para relacionarlos hacemos un destructuring
 const { Pokemon, Type } = sequelize.models;
 
-console.log(sequelize.models)
 // Aca vendrian las relaciones
 Pokemon.belongsToMany(Type, { through: 'relation'})
 Type.belongsToMany(Pokemon, { through: 'relation'})
