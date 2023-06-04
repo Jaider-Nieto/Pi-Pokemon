@@ -8,8 +8,8 @@ getPokemonsRouter
     try {
         const data = await getPokemos()
         return res.status(200).json(data)
-    } catch ({message}) {
-        return res.status(400).json({ error: message })
+    } catch ({ message }) {
+        return res.status(404).json({ error: message })
     }
 
 })
