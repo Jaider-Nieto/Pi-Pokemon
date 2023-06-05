@@ -34,43 +34,60 @@ const getPokemos = async () =>{
 }
 
 const getPokemosById = async (id, sourse) => {
+
+    //si sourse es api 
     if(sourse === 'api'){
+        //hacemos un fetch a la api 
         const data = await fetchPokeId(`${URL_API}${id}`)
+        //retornamos la data limpia con la funcion cleanPokemon
         return cleanPokemon(data)
     }
+    //caso contrario buscamos en la db 
     else{
+        //buscamos con findOne ya que asi nos permite condicionar la busqueda y nos trae la primera coincidencia 
         const data = await Pokemon.findOne({
             where: { id }
         })
+        //retornamos la data
         return data
     }
 }
 
 const getPokemosByName = async (name) =>{
 
+    //buscamos en la db 
     const dataDB = await Pokemon.findAll({
+        //traemos los que coincidan con name
         where:{
             name: {
+                //traemos los que contengan name en cualquier parte de la palabra
                 [Op.iLike]: `%${name}%` } 
         }
     })
 
+    //hacemos un fetch el cual busca el pokemon por name y se pasa a minuscula
     const res = await fetch(`${URL_API}${name.toLowerCase()}`)
     const dataRaw = await res.json()
+    //limpiamos la data con la funcion cleanPokemon
     const dataApi = [ cleanPokemon(dataRaw) ]
 
+    //juntamos los datos de la db con los de la api
     const data = [...dataDB, ...dataApi]
 
+    //si no encuentra nada en la db y en la api manejamos el error
     if(!data)throw Error('Pokemons not found')
 
+    //retornamos la data
     return data
 }
 
 // POST POKEMONS
 const postPokemons = async ( name, image, health, attack, defense, speed, height, weight, types ) => {
 
+    //manejamos el error si no se enviaron todos los datos necesarios
     if( !name || !image || !health || !attack || !defense || !speed || !height || !weight || !types )throw Error('There are mandatory fields not completed');
 
+    //creamos el pokemon con cada uno de los datos
     const newPokemon = await Pokemon.create({ 
         name, 
         image, 
@@ -83,6 +100,7 @@ const postPokemons = async ( name, image, health, attack, defense, speed, height
         types,
     })
 
+    //retornamos un mensaje indicando que todo salio bien
     return 'The Pokemon was created successfully'
 
 }
