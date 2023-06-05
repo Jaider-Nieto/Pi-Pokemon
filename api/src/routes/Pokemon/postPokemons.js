@@ -6,9 +6,9 @@ postPokemonsRouter
 
 .post('/', async (req, res) => {
     try {
-        const { name, image, health, atack, defence, speed, height, weigth, types } = req.body
+        const { name, image, health, attack, defense, speed, height, weight, types } = req.body
 
-        const data = await postPokemons( name, image, health, atack, defence, speed, height, weigth, types )
+        const data = await postPokemons( name, image, health, attack, defense, speed, height, weight, types )
 
         return res.status(200).json({ message: data })
 

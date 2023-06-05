@@ -22,11 +22,11 @@ module.exports = (sequelize) => {
       type: DataTypes.INTEGER,
       allowNull: false,
     },
-    atack: {
+    attack: {
       type: DataTypes.INTEGER,
       allowNull: false,
     },
-    defence: {
+    defense: {
       type: DataTypes.INTEGER,
       allowNull: false,
     },
@@ -38,7 +38,7 @@ module.exports = (sequelize) => {
       type: DataTypes.INTEGER,
       allowNull: false,
     },
-    weigth:{
+    weight:{
       type: DataTypes.INTEGER,
       allowNull: false,
     }

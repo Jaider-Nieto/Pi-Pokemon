@@ -1,4 +1,4 @@
-const { getPokemos } = require('../../Controllers/controllers');
+const { getPokemos, getPokemosById, getPokemosByName } = require('../../Controllers/controllers');
 
 const getPokemonsRouter = require('express').Router();
 
@@ -6,6 +6,14 @@ getPokemonsRouter
 
 .get('/', async (req, res) => {
     try {
+
+        const { name } = req.query
+
+        if(name){
+            const data = await getPokemosByName(name)
+            return res.status(200).json(data)
+        }
+
         const data = await getPokemos()
         return res.status(200).json(data)
     } catch ({ message }) {
@@ -14,7 +22,16 @@ getPokemonsRouter
 
 })
 
-.get('/:id', (req, res) => {
+.get('/:id', async (req, res) => {
+    try {
+        const { id } = req.params
+        const sourse = isNaN(id) ? 'db' : 'api';
+
+        const data = await getPokemosById(id, sourse)
+        return res.status(200).json(data)
+    } catch ({message}) {
+        return res.status(404).json({ error: message })
+    }
 
 })
 
