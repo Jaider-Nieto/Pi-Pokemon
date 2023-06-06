@@ -25,9 +25,9 @@ getPokemonsRouter
 .get('/:id', async (req, res) => {
     try {
         const { id } = req.params
-        const sourse = isNaN(id) ? 'db' : 'api';
+        const source = isNaN(id) ? 'db' : 'api';
 
-        const data = await getPokemosById(id, sourse)
+        const data = await getPokemosById(id, source)
         return res.status(200).json(data)
     } catch ({message}) {
         return res.status(404).json({ error: message })

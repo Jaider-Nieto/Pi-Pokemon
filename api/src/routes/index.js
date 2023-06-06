@@ -4,6 +4,7 @@ const getPokemonsRouter = require('./Pokemon/getPokemons');
 const postPokemonsRouter = require('./Pokemon/postPokemons');
 const putPokemonsRouter = require('./Pokemon/putPokemons');
 const deletePokemonsRouter = require('./Pokemon/deletePokemons');
+const getTypesRouter = require('./Type/getTypes');
 
 const router = Router();
 
@@ -21,8 +22,12 @@ router.use('/pokemons', postPokemonsRouter);
 router.use('/pokemons', putPokemonsRouter)
 
 //  <--DELETE POKEMONS-->
-router.use('pokemons', deletePokemonsRouter)
+router.use('/pokemons', deletePokemonsRouter)
 
+// TYPES
+
+// <--GET TYPES-->
+router.use('/types', getTypesRouter)
 
 
 module.exports = router;

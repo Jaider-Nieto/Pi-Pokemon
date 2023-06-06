@@ -1,4 +1,4 @@
-const { URL_API } = require('dotenv').config().parsed;
+const { URL_API, URL_API_TYPE } = require('dotenv').config().parsed;
 const { json } = require('sequelize');
 const {cleanPokemon, fetchPokeId} = require('../Auxiliar/auxiliar');
 const { Pokemon, Type } = require('../db')
@@ -8,7 +8,15 @@ const { Op } = require('sequelize')
 const getPokemos = async () =>{
 
     // traemos os datos de la db
-    const dataDB = await Pokemon.findAll()
+    const dataDB = await Pokemon.findAll({
+        include: {
+            model: Type,
+            attribute: ['id','name'],
+            through:{
+                attribute: []
+            }
+        }
+    })
 
     // traemos los datos de la api
     const res = await fetch(`${URL_API}?limit=250`)
@@ -33,12 +41,17 @@ const getPokemos = async () =>{
     return data
 }
 
-const getPokemosById = async (id, sourse) => {
+const getPokemosById = async (id, source) => {
 
-    //si sourse es api 
-    if(sourse === 'api'){
+    //si source es api 
+    if(source === 'api'){
+
         //hacemos un fetch a la api 
         const data = await fetchPokeId(`${URL_API}${id}`)
+
+        //manejamos el error si data esta vacio
+        if(!data) throw Error('The ID does not exist')
+
         //retornamos la data limpia con la funcion cleanPokemon
         return cleanPokemon(data)
     }
@@ -46,7 +59,14 @@ const getPokemosById = async (id, sourse) => {
     else{
         //buscamos con findOne ya que asi nos permite condicionar la busqueda y nos trae la primera coincidencia 
         const data = await Pokemon.findOne({
-            where: { id }
+            where: { id },
+            include: {
+                model: Type,
+                attribute: ['id','name'],
+                through:{
+                    attribute: []
+                }
+            }
         })
         //retornamos la data
         return data
@@ -61,7 +81,15 @@ const getPokemosByName = async (name) =>{
         where:{
             name: {
                 //traemos los que contengan name en cualquier parte de la palabra
-                [Op.iLike]: `%${name}%` } 
+                [Op.iLike]: `%${name}%` } ,
+                
+        },
+        include: {
+            model: Type,
+            attribute: ['id','name'],
+            through:{
+                attribute: []
+            }
         }
     })
 
@@ -106,13 +134,47 @@ const postPokemons = async ( name, image, health, attack, defense, speed, height
 }
 
 // PUT POKEMONS
-const putPokemons = () => {
+const putPokemons = async (id, name, image, health, attack, defense, speed, height, weight, types) => {
+
+    await Pokemon.update({
+        name,
+        image,
+        health,
+        attack,
+        defense,
+        speed,
+        height,
+        weight,
+        types,
+    },{
+        where: { id }
+    })
     
+    //retornamos un mensaje indicando que todo salio bien
+    return 'The Pokemon was edited successfully'
 }
 
 // DELETE POKEMONS
-const deletePokemons = () => {
+const deletePokemons = async (id) => {
     
+    await Pokemon.destroy({
+        where:{ id }
+    })
+
+    return 'The Pokemon was deleted successfully'
+}
+
+//GET TYPES
+
+const getTypes = async () => {
+    const res = await fetch(`${URL_API_TYPE}`)  
+    const { results } = await res.json()
+
+    const data = results.map( type => {return type.name
+        //Type.create({name: type.name})
+    })
+
+    return data
 }
 
 
@@ -123,4 +185,5 @@ module.exports = {
     postPokemons,
     putPokemons,
     deletePokemons,
+    getTypes
 }

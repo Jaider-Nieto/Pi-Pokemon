@@ -10,7 +10,7 @@ postPokemonsRouter
 
         const data = await postPokemons( name, image, health, attack, defense, speed, height, weight, types )
 
-        return res.status(200).json({ message: data })
+        return res.status(201).json({ message: data })
 
     } catch ({ message }) {
         return res.status(400).json({ error: message})
