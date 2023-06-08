@@ -132,12 +132,14 @@ const postPokemons = async ( name, image, health, attack, defense, speed, height
         types,
     })
 
+    //buscamos los tios en la db
     const typeFind = await Type.findAll({
         where: {
             name: types
         }
     })
 
+    //agregamos los tipos al nuevo pokemon
     await newPokemon.addType(typeFind)
 
     //retornamos un mensaje indicando que todo salio bien
