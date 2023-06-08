@@ -10,7 +10,7 @@ deletePokemonsRouter
 
         const data = await deletePokemons(id)
 
-        return res.status(200).json(data)
+        return res.status(200).json({ message: data })
         
     } catch ({ message }) {
         res.status(400).json({error: message})
