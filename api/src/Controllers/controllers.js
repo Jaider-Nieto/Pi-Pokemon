@@ -1,5 +1,4 @@
 const { URL_API, URL_API_TYPE } = require('dotenv').config().parsed;
-const { json } = require('sequelize');
 const {cleanPokemon, fetchPokeId} = require('../Auxiliar/auxiliar');
 const { Pokemon, Type } = require('../db')
 const { Op } = require('sequelize')
@@ -11,10 +10,10 @@ const getPokemos = async () =>{
     const dataDB = await Pokemon.findAll({
         include: {
             model: Type,
-            attribute: ['id','name'],
-            through:{
-                attribute: []
-            }
+            attributes: ['name'],
+            through: {
+                attributes: []
+              }
         }
     })
 
@@ -62,9 +61,9 @@ const getPokemosById = async (id, source) => {
             where: { id },
             include: {
                 model: Type,
-                attribute: ['id','name'],
+                attributes: ['name'],
                 through:{
-                    attribute: []
+                    attributes: []
                 }
             }
         })
@@ -76,36 +75,41 @@ const getPokemosById = async (id, source) => {
 const getPokemosByName = async (name) =>{
 
     //buscamos en la db 
-    const dataDB = await Pokemon.findAll({
+    let dataDB = await Pokemon.findAll({
         //traemos los que coincidan con name
         where:{
             name: {
                 //traemos los que contengan name en cualquier parte de la palabra
-                [Op.iLike]: `%${name}%` } ,
+                [Op.iLike]: `%${name}%` }
                 
         },
         include: {
             model: Type,
-            attribute: ['id','name'],
-            through:{
-                attribute: []
-            }
+            attributes: ['name'],
+            through: {
+                attributes: []
+              }
         }
     })
 
-    //hacemos un fetch el cual busca el pokemon por name y se pasa a minuscula
+    // //hacemos un fetch el cual busca el pokemon por name y se pasa a minuscula
     const res = await fetch(`${URL_API}${name.toLowerCase()}`)
-    const dataRaw = await res.json()
-    //limpiamos la data con la funcion cleanPokemon
-    const dataApi = [ cleanPokemon(dataRaw) ]
 
-    //juntamos los datos de la db con los de la api
+    // //si no encuentra nada en la db y en la api manejamos el error
+    if(dataDB.length === 0 && res.status === 404)
+    throw Error('Pokemons not found')
+
+    if(res.status === 404) return dataDB
+    
+    const dataRaw = await res.json()
+
+    // //limpiamos la data con la funcion cleanPokemon
+    const dataApi = [cleanPokemon(dataRaw)]
+
+    // //juntamos los datos de la db con los de la api
     const data = [...dataDB, ...dataApi]
 
-    //si no encuentra nada en la db y en la api manejamos el error
-    if(!data)throw Error('Pokemons not found')
-
-    //retornamos la data
+    // //retornamos la data
     return data
 }
 
@@ -128,6 +132,14 @@ const postPokemons = async ( name, image, health, attack, defense, speed, height
         types,
     })
 
+    const typeFind = await Type.findAll({
+        where: {
+            name: types
+        }
+    })
+
+    await newPokemon.addType(typeFind)
+
     //retornamos un mensaje indicando que todo salio bien
     return 'The Pokemon was created successfully'
 
@@ -136,6 +148,7 @@ const postPokemons = async ( name, image, health, attack, defense, speed, height
 // PUT POKEMONS
 const putPokemons = async (id, name, image, health, attack, defense, speed, height, weight, types) => {
 
+    //editamos los valores con el metodo update
     await Pokemon.update({
         name,
         image,
@@ -156,11 +169,13 @@ const putPokemons = async (id, name, image, health, attack, defense, speed, heig
 
 // DELETE POKEMONS
 const deletePokemons = async (id) => {
-    
+
+    //eliminamos el pokemon que tenga el id pasado por parametro
     await Pokemon.destroy({
         where:{ id }
     })
 
+    //retornamos un mensaje indicando que todo salio bien
     return 'The Pokemon was deleted successfully'
 }
 
@@ -170,11 +185,13 @@ const getTypes = async () => {
     const res = await fetch(`${URL_API_TYPE}`)  
     const { results } = await res.json()
 
-    const data = results.map( type => {return type.name
-        //Type.create({name: type.name})
-    })
-
-    return data
+    for(let type of results){
+        Type.findOrCreate({
+            where: { name: type.name }
+        })
+    }
+    
+    return
 }
 
 

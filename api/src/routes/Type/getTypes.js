@@ -7,12 +7,14 @@ getTypesRouter
 
 .get('/', async (req, res) => {
     try {
-        const data = await getTypes()
+        const type = await Type.findByPk(20)
 
-        // const data = await Type.findAll()
+        if(!type) { await getTypes() }
+
+        const data = await Type.findAll()
         return res.status(200).json(data)
     } catch ({ message }) {
-        
+        return res.status(404).json({ error: message})
     }
 })
 
