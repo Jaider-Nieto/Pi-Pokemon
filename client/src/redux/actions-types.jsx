@@ -1,0 +1,7 @@
+export const GET_POKEMONS = 'GET_POKEMONS';
+export const POST_POKEMONS = 'POST_POKEMONS';
+export const PUT_POKEMONS = 'PUT_POKEMONS';
+export const DELETE_POKEMONS = 'DELETE_POKEMONS';
+export const GET_POKEMONS_DETAIL = 'GET_POKEMONS_DETAIL';
+export const GET_TYPES = 'GET_TYPES';
+export const CLEAN_STATE = 'CLEAN_STATE'
