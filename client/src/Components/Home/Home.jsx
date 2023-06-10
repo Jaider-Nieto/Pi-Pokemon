@@ -1,21 +1,20 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getPokemons, getPokemonsById, getTypes } from "../../redux/actions";
-import { NavLink } from "react-router-dom";
+import CardContainer from "../CardContainer/CardContainer";
 
 const Home = () => {
-  // const dispatch = useDispatch()
+  const dispatch = useDispatch()
+  const pokemons = useSelector((state)=> state.pokemons)
+  
+  useEffect(() => {
+    dispatch(getPokemons())
+  }, []);
 
-  // const state = useSelector((state)=> state.pokemons)
-
-  // useEffect(() => {
-  //     dispatch(getPokemons())
-  //     dispatch(getPokemonsById(1))
-  //     dispatch(getTypes())
-  // }, []);
   return (
     <div>
       <h1>home</h1>
+      { pokemons.length ? <CardContainer state={pokemons}/>  : "loading" }
     </div>
   );
 };

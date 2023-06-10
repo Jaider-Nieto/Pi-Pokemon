@@ -2,7 +2,7 @@ const cleanPokemon = ({id, name, sprites, stats, height, weight,types}) => {
     const res = {
             id,
             name, 
-            image: sprites?.front_default, 
+            image: sprites?.other.dream_world.front_default, 
             health: stats?.find(value => value.stat.name === 'hp').base_stat,
             attack: stats?.find(value => value.stat.name === 'attack').base_stat,
             defense: stats?.find(value => value.stat.name === 'defense').base_stat,

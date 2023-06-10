@@ -1,0 +1,12 @@
+.card{
+    margin: 3rem auto;
+    border: 1px solid black;
+    padding: 1rem;
+}
+
+.img{
+    border: 1px solid black;
+    margin: auto;
+    width: 300px;
+    height: 300px;
+}

@@ -1,9 +1,11 @@
 import "./App.css";
-import Home from "./Components/Home/Home";
 import { Routes, Route } from "react-router-dom";
-import LandingPage from "./Components/LandingPage/LandingPage";
-import FormCreate from "./Components/FormCreate/FormCreate";
-import Detail from "./Components/Detail/Detail";
+import {
+  LandingPage,
+  Home,
+  FormCreate,
+  Detail
+} from './Components'
 
 const App = () => {
   return (
