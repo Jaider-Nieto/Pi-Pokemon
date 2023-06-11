@@ -9,7 +9,9 @@ const cleanPokemon = ({id, name, sprites, stats, height, weight,types}) => {
             speed: stats?.find(value => value.stat.name === 'speed').base_stat,
             height,
             weight,
-            types: types?.map( value => value.type.name),
+            types: types?.map( value => {
+                return {name: value.type.name}
+            }),
     }
     return res
 }

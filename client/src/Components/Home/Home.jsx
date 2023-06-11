@@ -1,20 +1,15 @@
-import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { getPokemons, getPokemonsById, getTypes } from "../../redux/actions";
+import { useSelector } from "react-redux";
 import CardContainer from "../CardContainer/CardContainer";
 
 const Home = () => {
-  const dispatch = useDispatch()
-  const pokemons = useSelector((state)=> state.pokemons)
-  
-  useEffect(() => {
-    dispatch(getPokemons())
-  }, []);
+  const pokemons = useSelector((state) => state.pokemons);
 
   return (
     <div>
       <h1>home</h1>
-      { pokemons.length ? <CardContainer state={pokemons}/>  : "loading" }
+      { pokemons.length ? 
+      <CardContainer state={pokemons} /> : 
+      <h2>loading</h2> }
     </div>
   );
 };

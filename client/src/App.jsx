@@ -6,8 +6,18 @@ import {
   FormCreate,
   Detail
 } from './Components'
+import { useDispatch } from "react-redux";
+import { useEffect } from "react";
+import { getPokemons, getTypes } from './redux/actions'
 
 const App = () => {
+
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getPokemons());
+    dispatch(getTypes());
+  }, []);
+
   return (
     <div>
       <Routes>
