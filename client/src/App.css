@@ -1,0 +1,12 @@
+*{
+    font-family: 'Amatic SC', cursive;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    border: none;
+}
+body{
+    background-image: url('./Imgs/pokemons-all-around-wallpaper-3554x1999_53.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+}

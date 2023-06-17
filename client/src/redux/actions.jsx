@@ -41,8 +41,8 @@ export const getPokemonsById = (id) => {
 }
 
 export const postPokemons = (pokemon) => {
-    console.log(pokemon)
     return async function (dispatch) {
+        console.log(pokemon)
         const res = await fetch('http://localhost:3001/pokemons', {
             method: 'POST',
             headers:{
@@ -54,5 +54,31 @@ export const postPokemons = (pokemon) => {
         const data = await res.json()
         console.log(data)
         dispatch({ type: POST_POKEMONS, payload: data })
+    }
+}
+
+export const putPokemons = (pokemon) => {
+    return async function (dispatch) {
+        console.log(pokemon)
+        const res = await fetch('http://localhost:3001/pokemons', {
+            method: 'PUT',
+            headers:{
+                "Content-type":"application/json; charset=UTF-8"
+            },
+            body: JSON.stringify(pokemon)
+        })
+        console.log(res)
+        const data = await res.json()
+        console.log(data)
+        dispatch({ type: PUT_POKEMONS, payload: data })
+    }
+}
+
+export const deletePokemons = (id) => {
+    return async function(dispatch) {
+        const res = await fetch(`http://localhost:3001/pokemons/${id}`,{
+            method: 'DELETE'})
+        const data = await res.json()
+        dispatch({ type: DELETE_POKEMONS, payload: data })
     }
 }

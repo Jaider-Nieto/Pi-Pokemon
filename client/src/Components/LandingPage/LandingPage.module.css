@@ -1,0 +1,11 @@
+.container{
+    margin-top: 10rem;
+    font-size: 3rem;
+    border: 2px solid #000;
+    display: grid;
+    justify-content: center;
+    gap: 2rem;
+}
+.button{
+    font-size: 5rem;
+}

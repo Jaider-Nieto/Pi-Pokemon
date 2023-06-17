@@ -1,5 +1,5 @@
 import LandingPage from "./LandingPage/LandingPage";
-import FormCreate from "./FormCreate/FormCreate";
+import Form from "./Form/Form";
 import Detail from "./Detail/Detail";
 import Home from "./Home/Home";
 import Card from "./Card/Card";
@@ -10,7 +10,7 @@ import Search from "./Search/Search";
 
 export {
     LandingPage,
-    FormCreate,
+    Form,
     Detail,
     Home,
     Card,

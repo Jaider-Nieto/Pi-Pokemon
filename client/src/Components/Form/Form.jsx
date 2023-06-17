@@ -1,24 +1,32 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from 'react-router-dom'
+import { useLocation, useNavigate, useParams } from 'react-router-dom'
 import handleError from "../validations";
-import { getPokemons, postPokemons } from "../../redux/actions";
+import { getPokemonsById, postPokemons, putPokemons } from "../../redux/actions";
 
-const FormCreate = () => {
+const Form = () => {
   const dispatch = useDispatch()
   const navigate = useNavigate()
+  const param = useParams().id
+  const location = useLocation().pathname
+
+  if(location === `/edit/${param}`){ 
+    useEffect(() => {
+      dispatch(getPokemonsById(param))
+    }, [])};
   const stateTypes = useSelector((state) => state.types);
+  const detail = useSelector((state) => state.pokemonDetail);
 
   const [pokemon, setPokemon] = useState({
-    name: "",
-    image: "",
-    health: "",
-    attack: "",
-    defense: "",
-    speed: "",
-    height: "",
-    weight: "",
-    types: [],
+    name: location === `/edit/${param}` ? detail.name : "",
+    image: location === `/edit/${param}` ? detail.image : "",
+    health: location === `/edit/${param}` ? detail.health : "",
+    attack: location === `/edit/${param}` ? detail.attack : "",
+    defense: location === `/edit/${param}` ? detail.defense : "",
+    speed: location === `/edit/${param}` ? detail.speed : "",
+    height: location === `/edit/${param}` ? detail.height : "",
+    weight: location === `/edit/${param}` ? detail.weight : "",
+    types: detail.types ? detail.types.map(type => type.name) : [],
   });
 
   const [error, setError] = useState({
@@ -61,7 +69,7 @@ const FormCreate = () => {
       setPokemon({ ...pokemon, types: filtered });
     };
     
-    const handleSubmit = (event) => {
+  const handleSubmit = (event) => {
       event.preventDefault();
       pokemon.health = parseInt(pokemon.health)
       pokemon.attack = parseInt(pokemon.attack)
@@ -69,9 +77,38 @@ const FormCreate = () => {
       pokemon.speed = parseInt(pokemon.speed)
       pokemon.height = parseInt(pokemon.height)
       pokemon.weight = parseInt(pokemon.weight)
-  
+
+      if(location === `/edit/${param}`){
+        pokemon.id = detail.id
+        dispatch(putPokemons(pokemon))
+        setPokemon({
+          id: "",
+          name: "",
+          image: "",
+          health: "",
+          attack: "",
+          defense: "",
+          speed: "",
+          height: "",
+          weight: "",
+          types: []
+        })
+        navigate(`/detail/${param}`)
+        return
+      }
       dispatch(postPokemons(pokemon))
-      navigate('/home')
+      setPokemon({
+        name: "",
+        image: "",
+        health: "",
+        attack: "",
+        defense: "",
+        speed: "",
+        height: "",
+        weight: "",
+        types: []
+      })
+      navigate(`/home`)
     };
   return (
     <form onSubmit={handleSubmit} >
@@ -174,7 +211,7 @@ const FormCreate = () => {
       </div>
       <hr />
       <div>
-        {pokemon.types.length < 1 ? (
+        {pokemon.types?.length < 1 ? (
           <span> You should choose at least one type </span>
         ) : (
           pokemon.types?.map((type, i) => (
@@ -185,9 +222,9 @@ const FormCreate = () => {
         )}
       </div>
 
-      <button> Create </button>
+      <button> { location === `/edit/${param}` ? 'edit' : 'create' } </button>
     </form>
   );
 };
 
-export default FormCreate;
+export default Form;

@@ -2,9 +2,10 @@ import {
     CLEAN_STATE,
     GET_POKEMONS,
     GET_POKEMONS_DETAIL,
+    GET_POKEMONS_NAME,
     GET_TYPES,
     POST_POKEMONS,
-    GET_POKEMONS_NAME
+    PUT_POKEMONS,
 } from './actions-types'
 
 const intialState = {
@@ -38,6 +39,16 @@ const reducer = (state = intialState, { type, payload}) => {
                 types: payload
             }
         case POST_POKEMONS: 
+            return {
+                ...state,
+                message: payload
+            }
+        case PUT_POKEMONS: 
+            return {
+                ...state,
+                message: payload
+            }
+        case PUT_POKEMONS: 
             return {
                 ...state,
                 message: payload

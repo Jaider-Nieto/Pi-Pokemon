@@ -7,11 +7,7 @@ import { getPokemons } from "../../redux/actions";
 const Nav = () => {
     const navigate = useNavigate()
     const dispatch = useDispatch()
-    const pokemons = useSelector(state => state.pokemons)
-    console.log(pokemons)
-
     const handleReset = () => {
-        pokemons.length > 10 ? '' :
         dispatch(getPokemons())
     }
     return(
