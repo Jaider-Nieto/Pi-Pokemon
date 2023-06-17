@@ -13,8 +13,6 @@ const Detail = () => {
 
   const state = useSelector((state) => state.pokemonDetail);
 
-  console.log(state);
-
   return (
     <div>
       <img src={state.image} alt={state.name} />
