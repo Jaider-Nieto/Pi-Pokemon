@@ -7,6 +7,7 @@ import CardContainer from "./CardContainer/CardContainer";
 import Nav from "./Nav/Nav";
 import SearchBar from "./searchBar/SearchBar";
 import Search from "./Search/Search";
+import Paged from "./Paged/Paged";
 
 export {
     LandingPage,
@@ -18,4 +19,5 @@ export {
     Nav,
     SearchBar,
     Search,
+    Paged
 }

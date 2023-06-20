@@ -6,7 +6,9 @@
     border: none;
 }
 body{
-    background-image: url('./Imgs/pokemons-all-around-wallpaper-3554x1999_53.jpg');
-    background-repeat: no-repeat;
-    background-size: cover;
+    height: 70vh;
+    background-image: url('./Imgs/back.jpg');
+    background-repeat: repeat;
+    background-position: center;
+    background-size: contain;
 }

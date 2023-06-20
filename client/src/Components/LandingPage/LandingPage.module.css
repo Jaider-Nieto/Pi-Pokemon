@@ -1,11 +1,38 @@
 .container{
+    background:#ffc;
+    color: #000;
+    margin: auto;
     margin-top: 10rem;
     font-size: 3rem;
-    border: 2px solid #000;
+    text-shadow: 0 0 3px #00000084;
+    border: 8px double #555;
     display: grid;
-    justify-content: center;
-    gap: 2rem;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+    justify-items: center;
+    gap: 1rem;
+    width: 30rem;
+    padding: 2rem;
 }
 .button{
-    font-size: 5rem;
+    background: #fff;
+    border: 3px solid #555;
+    font-size: 4rem;
+    padding: 0 1rem;
+    cursor: pointer;
+    animation: button infinite .5s linear;
+}
+.button:hover{
+    scale: 1.1;
+}
+.button:active{
+    scale: 1;
+}
+
+@keyframes button{
+    0%{background: linear-gradient(to top left, #b3f3b1, #a0d6f6, #caa2f0, #f89696,#f1e154)}
+    25%{background: linear-gradient(to top left, #a0d6f6, #caa2f0, #f89696,#f1e154,#b3f3b1)}
+    50%{background: linear-gradient(to top left, #caa2f0, #f89696,#f1e154,#b3f3b1, #a0d6f6)}
+    75%{background: linear-gradient(to top left, #f89696,#f1e154,#b3f3b1, #a0d6f6, #caa2f0)}
+    100%{background: linear-gradient(to top left, #f1e154,#b3f3b1, #a0d6f6, #caa2f0, #f89696)}
 }
