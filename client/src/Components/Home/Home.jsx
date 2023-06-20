@@ -3,6 +3,7 @@ import CardContainer from "../CardContainer/CardContainer";
 import { useEffect, useState } from "react";
 import { getPokemons } from "../../redux/actions";
 import { Paged } from "../index";
+import style from './Home.module.css'
 
 const Home = () => {
   const dispatch = useDispatch()
@@ -17,12 +18,11 @@ const Home = () => {
   const max = pokemons.length / items
 
   return (
-    <div>
-      <h1>home</h1>
+    <div className={style.container}>
       { pokemons.length ? 
       <CardContainer page={page} items={items} state={pokemons} /> : 
       <h2>loading</h2> }
-      <Paged page={page} setPage={setPage} max={max} /> 
+        <Paged page={page} setPage={setPage} max={max} /> 
     </div>
   );
 };

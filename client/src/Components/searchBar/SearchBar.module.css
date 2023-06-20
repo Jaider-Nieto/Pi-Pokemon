@@ -1,6 +1,6 @@
 .input{
     font-size: 2.5rem;
-    outline: 2px solid #000;
+    outline: 3px solid #000;
     background: transparent;
     padding: 0 .5rem;
 }
@@ -12,11 +12,11 @@
 }
 .icon{
     font-size: 2rem;
-    outline: 2px solid #000;
+    outline: 3px solid #000;
     height: 100%;
     width: 3rem;
     position: relative;
-    left: -3.9rem;
+    left: -3.85rem;
     cursor: pointer;
 }
 .icon:hover{

@@ -8,6 +8,7 @@ import Nav from "./Nav/Nav";
 import SearchBar from "./searchBar/SearchBar";
 import Search from "./Search/Search";
 import Paged from "./Paged/Paged";
+import Type from "./Type/Type";
 
 export {
     LandingPage,
@@ -19,5 +20,6 @@ export {
     Nav,
     SearchBar,
     Search,
-    Paged
+    Paged,
+    Type,
 }

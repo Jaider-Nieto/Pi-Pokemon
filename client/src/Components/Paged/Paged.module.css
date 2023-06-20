@@ -1,18 +1,15 @@
 .container{
     background: linear-gradient(to bottom, #fff, #aaa);
     height: 4rem;
-    width: 18rem;
-    margin: 2rem auto;
-    border-radius: 2rem;
-    border: 4px solid #000;
+    width: 85%;
+    outline: 4px solid #000;
+    margin: 0.25rem auto;
     font-size: 3rem;
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 2rem;
-    position: relative;
-    bottom: 1rem;
-    box-shadow: 0 0 8px #000;
+    user-select: none;
 }
 .page{
     word-spacing: .5rem;

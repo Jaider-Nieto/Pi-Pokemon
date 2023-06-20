@@ -1,0 +1,8 @@
+.container{
+    background-color: #fff;
+    width: 85%;
+    margin: auto;
+    outline: 4px solid #000;
+    display: flex;
+    flex-wrap: wrap;
+}
