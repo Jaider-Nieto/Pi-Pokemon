@@ -13,7 +13,7 @@ const handleError = ({
     if(!/(^[a-zA-Z]{0,100})+(\s[a-zA-Z]{0,150})?$/.test(name)){
         error.name = 'Only characters from [a - z] or [A - Z]'
     }
-    if(!/^([a-zA-Z0-9\s_\\.\-:\/])+(.jpg|.png)$/.test(image)){
+    if(!/^([a-zA-Z0-9\s_\\.\-:\/])+(.jpg|.png|.svg)$/.test(image)){
         error.image = 'The image format should be .png or .jpg'
     }
     if(!/^[0-9]{0,5}$/.test(health)){

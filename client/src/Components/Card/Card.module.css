@@ -3,6 +3,14 @@
     outline: 3px solid black;
     padding: 1rem;
     background: linear-gradient(to top left, #8d8bfd,#f1efa2 , #f79292, #b5fd8b);
+    cursor: pointer;
+    transition: .3s;
+}
+.container:hover{
+    scale: 1.05;
+}
+.container:active{
+    scale: .9;
 }
 .title{
     letter-spacing: 3px;

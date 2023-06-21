@@ -1,100 +1,100 @@
 .normal{
     border-radius: 1rem;
     background-color: #A8A878;
-    padding: 0 .5rem;
+    padding: 0 1rem;
 }
 .grass{
     border-radius: 1rem;
-    padding: 0 .5rem;
+    padding: 0 1rem;
     background-color: #78C850;
 }
 .poison{
     border-radius: 1rem;
-    padding: 0 .5rem;
+    padding: 0 1rem;
     background-color: #A040A0;
 }
 .fire{
     border-radius: 1rem;
-    padding: 0 .5rem;
+    padding: 0 1rem;
     background-color: #E77F35;
 }
 .water{
     border-radius: 1rem;
-    padding: 0 .5rem;
+    padding: 0 1rem;
     background-color: #6890F0;
 }
 .electric{
     border-radius: 1rem;
-    padding: 0 .5rem;
+    padding: 0 1rem;
     background-color: #F8D030;
 }
 .ice{
     border-radius: 1rem;
-    padding: 0 .5rem;
+    padding: 0 1rem;
     background-color: #98D8D8;
 }
 .fighting{
     border-radius: 1rem;
-    padding: 0 .5rem;
+    padding: 0 1rem;
     background-color: #C03028
 }
 .ground{
     border-radius: 1rem;
-    padding: 0 .5rem;
+    padding: 0 1rem;
     background-color: #E0C068;
 }
 .flying{
     border-radius: 1rem;
-    padding: 0 .5rem;
+    padding: 0 1rem;
     background-color:#A890F0;
 }
 .psychic{
     border-radius: 1rem;
-    padding: 0 .5rem;
+    padding: 0 1rem;
     background-color:#F85888;
 }
 .bug{
     border-radius: 1rem;
-    padding: 0 .5rem;
+    padding: 0 1rem;
     background-color:#A8B820; 
 }
 .rock{
     border-radius: 1rem;
-    padding: 0 .5rem;
+    padding: 0 1rem;
     background-color:#B8A038; 
 }
 .ghost{
     border-radius: 1rem;
-    padding: 0 .5rem;
+    padding: 0 1rem;
     background-color:#705898; 
 }
 .dark{
     border-radius: 1rem;
-    padding: 0 .5rem;
+    padding: 0 1rem;
     background-color:#242423; 
 }
 .fairy{
     border-radius: 1rem;
-    padding: 0 .5rem;
+    padding: 0 1rem;
     background-color:#F0B6BC; 
 }
 .dragon{
     border-radius: 1rem;
-    padding: 0 .5rem;
+    padding: 0 1rem;
     background-color:#7038F8; 
 }
 .steel{
     border-radius: 1rem;
-    padding: 0 .5rem;
+    padding: 0 1rem;
     background-color:#B8B8D0; 
 }
 .unknown{
     border-radius: 1rem;
-    padding: 0 .5rem;
+    padding: 0 1rem;
     background-color:#bb52eb; 
 }
 .shadow{
     border-radius: 1rem;
-    padding: 0 .5rem;
+    padding: 0 1rem;
     background-color:#4d4d4d; 
 }

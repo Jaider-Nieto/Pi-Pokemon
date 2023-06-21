@@ -1,5 +1,6 @@
 .container{
-    background-color: #fff;
+    background: #7b7b7b5e;
+    backdrop-filter: blur(3px);
     width: 85%;
     margin: auto;
     outline: 4px solid #000;

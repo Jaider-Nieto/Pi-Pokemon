@@ -1,14 +1,16 @@
+import style from "./Detail.module.css";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import { deletePokemons, getPokemonsById } from "../../redux/actions";
-import { TiPencil } from 'react-icons/ti'
-import { MdDelete } from 'react-icons/md'
+import { TiPencil } from "react-icons/ti";
+import { MdDelete } from "react-icons/md";
+import { Type } from '../index'
 
 const Detail = () => {
   const param = useParams().id;
   const dispatch = useDispatch();
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   useEffect(() => {
     dispatch(getPokemonsById(param));
@@ -17,33 +19,38 @@ const Detail = () => {
   const state = useSelector((state) => state.pokemonDetail);
 
   const handleDelete = () => {
-    dispatch(deletePokemons(state.id))
-    navigate('/home')
-  }
+    dispatch(deletePokemons(state.id));
+    navigate("/home");
+  };
 
   return (
-    <div>
-      { typeof(state.id) === 'string' 
-      ? <button onClick={() => navigate(`/edit/${state.id}`)}> <TiPencil/> </button>
-      : '' }
-      { typeof(state.id) === 'string' 
-      ? <button onClick={handleDelete}> <MdDelete/> </button> 
-      : ''}
-
-      <img src={state.image} alt={state.name} />
-      <h1> id: {state.id} </h1>
-      <h1> name: {state.name} </h1>
-      <h1> health: {state.health} </h1>
-      <h1> attack: {state.attack} </h1>
-      <h1> defense: {state.defense} </h1>
-      <h1> speed: {state.speed} </h1>
-      <h1> height: {state.height} </h1>
-      <h1> weight: {state.weight} </h1>
-      <div>
-        <h1>types:</h1>
-        {state.types?.map((type, i) => (
-          <h2 key={i}> {type.name} </h2>
-        ))}
+    <div className={style.container}>
+      { typeof state.id === "string" 
+      ? 
+      <div className={style.iconsContainer}>
+        <TiPencil className={style.icons} onClick={() => navigate(`/edit/${state.id}`)} />
+        <MdDelete className={style.icons} onClick={handleDelete} /> 
+      </div>
+      : "" 
+      }
+        <div className={style.title}>detail of {state.name}</div>
+        <div className={style.id} > id: {state.id} </div>
+        <img className={style.img} src={state.image} alt={state.name} />
+        <div className={style.statsContainer}>
+        <h2 className={style.stat} > health: {state.health} </h2>
+        <h2 className={style.stat} > attack: {state.attack} </h2>
+        <h2 className={style.stat} > defense: {state.defense} </h2>
+        <h2 className={style.stat} > speed: {state.speed} </h2>
+        <h2 className={style.stat} > weight: {state.weight} </h2>
+        <h2 className={style.stat} > height: {state.height} </h2>
+      </div>
+      <div className={style.typesContainer}>
+        <h2 className={style.typesTittle}>types:</h2>
+        <div className={style.types}>
+          {state.types?.map((type, i) => (
+            <Type key={i} type={type.name}/>
+          ))}
+        </div>
       </div>
     </div>
   );
