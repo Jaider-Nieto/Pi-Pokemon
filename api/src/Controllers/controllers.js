@@ -160,7 +160,7 @@ const putPokemons = async (id, name, image, health, attack, defense, speed, heig
         speed,
         height,
         weight,
-        types,
+        types
     },{
         where: { id }
     })

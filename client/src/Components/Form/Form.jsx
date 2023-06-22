@@ -1,3 +1,4 @@
+import style from "./Form.module.css";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
@@ -7,7 +8,6 @@ import {
   postPokemons,
   putPokemons,
 } from "../../redux/actions";
-import style from "./Form.module.css";
 
 const Form = () => {
   const dispatch = useDispatch();
@@ -24,14 +24,14 @@ const Form = () => {
   const detail = useSelector((state) => state.pokemonDetail);
 
   const [pokemon, setPokemon] = useState({
-    name: location === `/edit/${param}` ? detail.name : "1",
-    image: location === `/edit/${param}` ? detail.image : "j",
-    health: location === `/edit/${param}` ? detail.health : "j",
-    attack: location === `/edit/${param}` ? detail.attack : "j",
-    defense: location === `/edit/${param}` ? detail.defense : "j",
-    speed: location === `/edit/${param}` ? detail.speed : "j",
-    height: location === `/edit/${param}` ? detail.height : "j",
-    weight: location === `/edit/${param}` ? detail.weight : "j",
+    name: location === `/edit/${param}` ? detail.name : "",
+    image: location === `/edit/${param}` ? detail.image : "",
+    health: location === `/edit/${param}` ? detail.health : "",
+    attack: location === `/edit/${param}` ? detail.attack : "",
+    defense: location === `/edit/${param}` ? detail.defense : "",
+    speed: location === `/edit/${param}` ? detail.speed : "",
+    height: location === `/edit/${param}` ? detail.height : "",
+    weight: location === `/edit/${param}` ? detail.weight : "",
     types: detail.types ? detail.types.map((type) => type.name) : [],
   });
 
@@ -85,6 +85,7 @@ const Form = () => {
 
     if (location === `/edit/${param}`) {
       pokemon.id = detail.id;
+      console.log(pokemon)
       dispatch(putPokemons(pokemon));
       setPokemon({
         id: "",
@@ -117,7 +118,7 @@ const Form = () => {
   };
   return (
     <form className={style.container} onSubmit={handleSubmit}>
-      <h2 className={style.title}>creation form</h2>
+      <h2 className={style.title}>{ location === `/edit/${param}` ? 'Edit Your Pokemon' : 'Create Your Pokemon' }</h2>
       <label className={style.labelLeft}>name:</label>
       <input
         className={style.inputLeft}
@@ -146,7 +147,9 @@ const Form = () => {
         name="health"
         placeholder="Health 1 to 10000"
       />
-      {error.health && <span className={style.errorHealth}> {error.health} </span>}
+      {error.health && (
+        <span className={style.errorHealth}> {error.health} </span>
+      )}
 
       <label className={style.labelRight}>attack:</label>
       <input
@@ -156,7 +159,9 @@ const Form = () => {
         name="attack"
         placeholder="Attack 1 to 10000"
       />
-      {error.attack && <span className={style.errorAttack}> {error.attack} </span>}
+      {error.attack && (
+        <span className={style.errorAttack}> {error.attack} </span>
+      )}
 
       <label className={style.labelLeft}>defense:</label>
       <input
@@ -166,7 +171,9 @@ const Form = () => {
         name="defense"
         placeholder="Defense 1 to 10000"
       />
-      {error.defense && <span className={style.errorDefense}> {error.defense} </span>}
+      {error.defense && (
+        <span className={style.errorDefense}> {error.defense} </span>
+      )}
 
       <label className={style.labelRight}>speed:</label>
       <input
@@ -186,7 +193,9 @@ const Form = () => {
         name="height"
         placeholder="Height 1 to 100"
       />
-      {error.height && <span className={style.errorHeight}> {error.height} </span>}
+      {error.height && (
+        <span className={style.errorHeight}> {error.height} </span>
+      )}
 
       <label className={style.labelRight}>weight:</label>
       <input
@@ -196,7 +205,9 @@ const Form = () => {
         name="weight"
         placeholder="Weight 1 to 10000"
       />
-      {error.weight && <span className={style.errorWeight}> {error.weight} </span>}
+      {error.weight && (
+        <span className={style.errorWeight}> {error.weight} </span>
+      )}
 
       <div className={style.typesContainer}>
         <h2 className={style.typesTitle}>Types: </h2>
@@ -208,20 +219,43 @@ const Form = () => {
       </div>
       <hr />
       <div className={style.typesContainer}>
-      { pokemon.types.length > 0 ? <h2 className={style.typesTitle}>Chosen: </h2> : ''   }
-        {
-          pokemon.types?.length < 1 ? (
-            <span className={style.spanType}> You should choose at least one type </span>
-          ) : (
-            pokemon.types?.map((type, i) => (
-              <div className={style[type]} onClick={deleteType} key={i}>
-                {type}
-              </div>
-            ))
-          )}
+        {pokemon.types.length > 0 ? (
+          <h2 className={style.typesTitleChosen}>Chosen: </h2>
+        ) : (
+          ""
+        )}
+        {pokemon.types?.length < 1 ? (
+          <span className={style.spanType}>
+            You should choose at least one type
+          </span>
+        ) : (
+          pokemon.types?.map((type, i) => (
+            <div className={style[type]} onClick={deleteType} key={i}>
+              {type}
+            </div>
+          ))
+        )}
       </div>
 
-      <button> {location === `/edit/${param}` ? "edit" : "create"} </button>
+      <button
+        disabled={ 
+          error.name || 
+          error.image || 
+          error.health || 
+          error.attack || 
+          error.defense || 
+          error.speed || 
+          error.height || 
+          pokemon.name === '' || 
+          pokemon.image === '' || 
+          pokemon.health === '' || 
+          pokemon.attack === '' || 
+          pokemon.defense === '' || 
+          pokemon.speed === '' || 
+          pokemon.height === '' }
+        className={style.button}>
+        {location === `/edit/${param}` ? "edit" : "create"}{" "}
+      </button>
     </form>
   );
 };

@@ -1,8 +1,8 @@
 import { useDispatch, useSelector } from "react-redux";
 import CardContainer from "../CardContainer/CardContainer";
 import { useEffect, useState } from "react";
-import { getPokemons } from "../../redux/actions";
-import { Paged } from "../index";
+import { getPokemons, getTypes } from "../../redux/actions";
+import { Filters, Paged } from "../index";
 import style from './Home.module.css'
 
 const Home = () => {
@@ -10,7 +10,8 @@ const Home = () => {
   const pokemons = useSelector((state) => state.pokemons);
   useEffect(() => {
     dispatch(getPokemons())
-  }, []);
+    dispatch(getTypes())
+  }, [dispatch]);
 
   //paginado
   const [ page, setPage ] = useState(1)
@@ -19,6 +20,7 @@ const Home = () => {
 
   return (
     <div className={style.container}>
+      <Filters state={pokemons}/>
       { pokemons.length ? 
       <CardContainer page={page} items={items} state={pokemons} /> : 
       <h2>loading</h2> }

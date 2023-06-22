@@ -1,0 +1,46 @@
+.container{
+    background: linear-gradient(to bottom, #fff, #bbb);
+    margin: auto;
+    width: 85%;
+    height: 4rem;
+    outline: 4px solid #000;
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    align-items: center;
+    font-size: 3rem;
+}
+.filterContainer{
+    height: 100%;
+    width: auto;
+    padding: 0 .5rem;
+    font-size: 2rem;
+    background-color: #ffffff00;
+    outline: 2px solid #000;
+    display: flex;
+    align-items: center;
+}
+.select{
+    height: 100%;
+    margin: 0 .5rem;
+    text-align: center;
+    font-size: 2.5rem;
+    width: 7rem;
+    outline: 3px dashed #000;
+}
+.options{
+    height: 100%;
+    margin: 0 .5rem;
+    font-size: 2rem;
+}
+.icon{
+    background-color: #fff;
+    cursor: pointer;
+    text-align: center;
+    height: 100%;
+    margin: 0 .5rem;
+    text-align: center;
+    width: auto;
+    padding: .5rem .5rem;
+    outline: 3px dashed #000;
+}

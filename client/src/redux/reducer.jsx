@@ -1,5 +1,12 @@
 import {
+    ASCENDING_ATTACK,
+    ASCENDING_ORDER,
     CLEAN_STATE,
+    DESCENDING_ATTACK,
+    DESCENDING_ORDER,
+    FILTER_API,
+    FILTER_DB,
+    FILTER_TYPES,
     GET_POKEMONS,
     GET_POKEMONS_DETAIL,
     GET_POKEMONS_NAME,
@@ -10,9 +17,11 @@ import {
 
 const intialState = {
     pokemons: [],
+    pokemonsAll: [],
     pokemonsName: [],
     pokemonDetail: {},
     types: [],
+    filtered: [],
     message: {}
 }
 
@@ -21,7 +30,8 @@ const reducer = (state = intialState, { type, payload}) => {
         case GET_POKEMONS:
             return {
                 ...state,
-                pokemons: payload
+                pokemons: payload,
+                pokemonsAll: payload
             }
         case GET_POKEMONS_DETAIL:
             return {
@@ -59,6 +69,48 @@ const reducer = (state = intialState, { type, payload}) => {
                 pokemonDetail: {},
                 types: [],
             }  
+        case DESCENDING_ORDER:
+            return {
+                ...state,
+                pokemons: payload,
+                filtered: payload
+            }
+        case ASCENDING_ORDER:
+            return {
+                ...state,
+                pokemons: payload,
+                filtered: payload
+            }
+        case DESCENDING_ATTACK:
+            return {
+                ...state,
+                pokemons: payload,
+                filtered: payload
+            }
+        case ASCENDING_ATTACK:
+            return {
+                ...state,
+                pokemons: payload,
+                filtered: payload
+            }
+        case FILTER_TYPES:
+            return {
+                ...state,
+                pokemons: payload,
+                filtered: payload
+            }
+        case FILTER_API:
+            return {
+                ...state,
+                pokemons: payload,
+                filtered: payload
+            }
+        case FILTER_DB:
+            return {
+                ...state,                    
+                pokemons: payload,
+                filtered: payload
+                }
         default:
             return {...state}
     }

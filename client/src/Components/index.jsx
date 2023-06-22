@@ -9,6 +9,7 @@ import SearchBar from "./searchBar/SearchBar";
 import Search from "./Search/Search";
 import Paged from "./Paged/Paged";
 import Type from "./Type/Type";
+import Filters from "./Filters/Filters";
 
 export {
     LandingPage,
@@ -22,4 +23,5 @@ export {
     Search,
     Paged,
     Type,
+    Filters,
 }

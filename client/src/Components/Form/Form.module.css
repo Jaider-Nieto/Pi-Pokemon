@@ -19,6 +19,7 @@
     grid-column: 1/5;
     font-size: 4rem;
     letter-spacing: 8px;
+    border-bottom: 2px solid #000;
 }
 .labelLeft{
     position: relative;
@@ -127,106 +128,147 @@
     text-align: center;
     font-size: 4rem;
 }
+.typesTitleChosen{
+    color: #000;
+    width: 100%;
+    text-align: center;
+    font-size: 3rem;
+}
 .normal{
+    cursor: pointer;
     border-radius: 1rem;
     background-color: #A8A878;
     padding: 0 1rem;
 }
 .grass{
+    cursor: pointer;
     border-radius: 1rem;
     padding: 0 1rem;
     background-color: #78C850;
 }
 .poison{
+    cursor: pointer;
     border-radius: 1rem;
     padding: 0 1rem;
     background-color: #A040A0;
 }
 .fire{
+    cursor: pointer;
     border-radius: 1rem;
     padding: 0 1rem;
     background-color: #E77F35;
 }
 .water{
+    cursor: pointer;
     border-radius: 1rem;
     padding: 0 1rem;
     background-color: #6890F0;
 }
 .electric{
+    cursor: pointer;
     border-radius: 1rem;
     padding: 0 1rem;
     background-color: #F8D030;
 }
 .ice{
+    cursor: pointer;
     border-radius: 1rem;
     padding: 0 1rem;
     background-color: #98D8D8;
 }
 .fighting{
+    cursor: pointer;
     border-radius: 1rem;
     padding: 0 1rem;
     background-color: #C03028
 }
 .ground{
+    cursor: pointer;
     border-radius: 1rem;
     padding: 0 1rem;
     background-color: #E0C068;
 }
 .flying{
+    cursor: pointer;
     border-radius: 1rem;
     padding: 0 1rem;
     background-color:#A890F0;
 }
 .psychic{
+    cursor: pointer;
     border-radius: 1rem;
     padding: 0 1rem;
     background-color:#F85888;
 }
 .bug{
+    cursor: pointer;
     border-radius: 1rem;
     padding: 0 1rem;
     background-color:#A8B820; 
 }
 .rock{
+    cursor: pointer;
     border-radius: 1rem;
     padding: 0 1rem;
     background-color:#B8A038; 
 }
 .ghost{
+    cursor: pointer;
     border-radius: 1rem;
     padding: 0 1rem;
     background-color:#705898; 
 }
 .dark{
+    cursor: pointer;
     border-radius: 1rem;
     padding: 0 1rem;
     background-color:#242423; 
 }
 .fairy{
+    cursor: pointer;
     border-radius: 1rem;
     padding: 0 1rem;
     background-color:#F0B6BC; 
 }
 .dragon{
+    cursor: pointer;
     border-radius: 1rem;
     padding: 0 1rem;
     background-color:#7038F8; 
 }
 .steel{
+    cursor: pointer;
     border-radius: 1rem;
     padding: 0 1rem;
     background-color:#B8B8D0; 
 }
 .unknown{
+    cursor: pointer;
     border-radius: 1rem;
     padding: 0 1rem;
     background-color:#bb52eb; 
 }
 .shadow{
+    cursor: pointer;
     border-radius: 1rem;
     padding: 0 1rem;
     background-color:#4d4d4d; 
 }
 .spanType{
     color: #000;
+}
+.button{
+    background-color: #e4e4e4;
+    outline: 4px outset #dad9d9;
+    grid-column: 1/5;
+    font-size: 3rem;
+    padding: 0 1rem;
+    margin: 1rem 0 1.5rem 0;
+    width: auto;
+    position: relative;
+    left: 2.8rem;
+    cursor: pointer;
+}
+.button:hover{
+    scale: 1.05;
 }

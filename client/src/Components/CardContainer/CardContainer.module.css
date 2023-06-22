@@ -2,7 +2,7 @@
     background: #7b7b7b5e;
     backdrop-filter: blur(3px);
     width: 85%;
-    margin: auto;
+    margin: 5px auto;
     outline: 4px solid #000;
     display: flex;
     flex-wrap: wrap;

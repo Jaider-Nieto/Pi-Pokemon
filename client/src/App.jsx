@@ -19,7 +19,7 @@ const App = () => {
   useEffect(() => {
     dispatch(getPokemons());
     dispatch(getTypes());
-  }, []);
+  }, [dispatch]);
 
   return (
     <div>
