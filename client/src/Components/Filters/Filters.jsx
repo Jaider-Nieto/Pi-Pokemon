@@ -10,6 +10,7 @@ import {
   filterByDB,
   filterByTypes,
   getPokemons,
+  reset,
 } from "../../redux/actions";
 
 const Filters = () => {
@@ -38,6 +39,7 @@ const Filters = () => {
   };
 
   const handleReset = () => {
+    dispatch(reset());
     dispatch(getPokemons());
   };
 

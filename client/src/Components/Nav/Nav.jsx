@@ -6,7 +6,6 @@ import { MdOutlineCatchingPokemon } from 'react-icons/md'
 
 const Nav = () => {
     const navigate = useNavigate()
-    const dispatch = useDispatch()
     return(
         <div className={style.container}>
             <h1 className={style.title}> POKEDEX  </h1>

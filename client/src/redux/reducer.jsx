@@ -13,6 +13,7 @@ import {
     GET_TYPES,
     POST_POKEMONS,
     PUT_POKEMONS,
+    RESET,
 } from './actions-types'
 
 const intialState = {
@@ -111,6 +112,12 @@ const reducer = (state = intialState, { type, payload}) => {
                 pokemons: payload,
                 filtered: payload
                 }
+        case RESET:
+            return{
+                ...state,
+                pokemons: [],
+                filtered: []
+            }
         default:
             return {...state}
     }

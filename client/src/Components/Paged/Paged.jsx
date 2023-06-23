@@ -3,7 +3,9 @@ import style from './Paged.module.css'
 import { CgPlayTrackPrevO, CgPlayTrackNextO } from 'react-icons/cg'
 
 const Paged = ({page, setPage, max}) => {
-    const navigate = useNavigate()
+    if(page > Math.ceil(max)){
+        setPage(1)
+    }
     const nextPage = () => {
         if(page === Math.ceil(max)) return
         setPage(page + 1)

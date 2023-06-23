@@ -1,0 +1,39 @@
+.container{
+    text-align: center;
+    background:#ffc;
+    color: #000;
+    margin: auto;
+    margin-top: 10rem;
+    font-size: 5rem;
+    text-shadow: 0 0 3px #00000084;
+    border: 8px double #555;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    gap: 1rem;
+    width: 25rem;
+    padding: 2rem;
+    letter-spacing: 3px;
+    animation: loading infinite 3s linear;
+}
+@keyframes loading {
+    0%{
+        letter-spacing: 3px;
+    }
+    25%{
+        letter-spacing: 7px;
+        scale: 1.1;
+    }
+    50%{
+        letter-spacing: 10px;
+        scale: 1.2;
+    }
+    75%{
+        letter-spacing: 7px;
+        scale: 1.1;
+
+    }
+    100%{
+        letter-spacing: 3px;
+    }
+}

@@ -13,6 +13,7 @@ import {
     FILTER_TYPES,
     FILTER_API,
     FILTER_DB,
+    RESET
 } from './actions-types';
 
 export const getPokemons = (name) => {
@@ -139,5 +140,11 @@ export const filterByDB = (state) => {
     )
     return function(dispatch) {
         dispatch({ type: FILTER_DB, payload: filterDB })
+    }
+}
+
+export const reset  = () => {
+    return function(dispatch) {
+        dispatch({ type: RESET, payload: '' })
     }
 }

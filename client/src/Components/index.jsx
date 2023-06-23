@@ -10,6 +10,7 @@ import Search from "./Search/Search";
 import Paged from "./Paged/Paged";
 import Type from "./Type/Type";
 import Filters from "./Filters/Filters";
+import Loading from "./Loading/Loading";
 
 export {
     LandingPage,
@@ -24,4 +25,5 @@ export {
     Paged,
     Type,
     Filters,
+    Loading,
 }

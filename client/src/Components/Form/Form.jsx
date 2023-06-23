@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import handleError from "../validations";
 import {
+  getPokemons,
   getPokemonsById,
   postPokemons,
   putPokemons,
@@ -85,8 +86,8 @@ const Form = () => {
 
     if (location === `/edit/${param}`) {
       pokemon.id = detail.id;
-      console.log(pokemon)
       dispatch(putPokemons(pokemon));
+      dispatch(getPokemons())
       setPokemon({
         id: "",
         name: "",
@@ -99,8 +100,8 @@ const Form = () => {
         weight: "",
         types: [],
       });
-      navigate(`/detail/${param}`);
-      return;
+      navigate(`/detail/${param}`)
+      return
     }
     dispatch(postPokemons(pokemon));
     setPokemon({
@@ -252,9 +253,12 @@ const Form = () => {
           pokemon.attack === '' || 
           pokemon.defense === '' || 
           pokemon.speed === '' || 
-          pokemon.height === '' }
+          pokemon.height === '' ||
+          pokemon.types.length === 0
+        }
+
         className={style.button}>
-        {location === `/edit/${param}` ? "edit" : "create"}{" "}
+        {location === `/edit/${param}` ? "edit" : "create"}
       </button>
     </form>
   );
