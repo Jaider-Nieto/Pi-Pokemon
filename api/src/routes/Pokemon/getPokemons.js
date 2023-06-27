@@ -1,4 +1,4 @@
-const { getPokemos, getPokemosById, getPokemosByName } = require('../../Controllers/controllers');
+const { getPokemons, getPokemosById, getPokemosByName } = require('../../Controllers/controllers');
 
 const getPokemonsRouter = require('express').Router();
 
@@ -14,7 +14,7 @@ getPokemonsRouter
             return res.status(200).json(data)
         }
 
-        const data = await getPokemos()
+        const data = await getPokemons()
         return res.status(200).json(data)
     } catch ({ message }) {
         return res.status(404).json({ error: message })

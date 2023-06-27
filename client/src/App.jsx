@@ -6,7 +6,8 @@ import {
   Form,
   Detail,
   Nav,
-  Search
+  Search,
+  NotFound
 } from './Components'
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
@@ -25,12 +26,13 @@ const App = () => {
     <div>
       {location === '/' ? '' : <Nav/> }
       <Routes>
+        <Route path="*" element={<NotFound/>}/>
         <Route path="/" element={<LandingPage/>} />
         <Route path="/home" element={<Home />} />
         <Route path="/search" element={<Search/>} />
         <Route path="/create" element={<Form/>} />
         <Route path="/edit/:id" element={<Form/>} />
-        <Route path="/detail/:id" element={<Detail/>} />
+        <Route path="/detail/:id" element={<Detail/>}/>
       </Routes>
     </div>
   );

@@ -7,7 +7,9 @@ const CardContainer = ({ state, page, items }) => {
   return (
     <div className={style.container}>
       {
-      location === '/search' ? state.map(({ id, image, name, types }) => (
+      location === '/search' ? state.slice(
+        (page - 1) * items, (page - 1) * items + items
+      ).map(({ id, image, name, types }) => (
         <Card
         key={name} 
         id={id}

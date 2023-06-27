@@ -1,10 +1,9 @@
 const { URL_API, URL_API_TYPE } = require('dotenv').config().parsed;
 const {cleanPokemon, fetchPokeId} = require('../Auxiliar/auxiliar');
 const { Pokemon, Type } = require('../db')
-const { Op } = require('sequelize')
 
 // GET POKEMONS
-const getPokemos = async () =>{
+const getPokemons = async () =>{
 
     // traemos os datos de la db
     const dataDB = await Pokemon.findAll({
@@ -73,44 +72,12 @@ const getPokemosById = async (id, source) => {
 }
 
 const getPokemosByName = async (name) =>{
+    const allPokemons = await getPokemons()
+    const expression = new RegExp(`${name}.*`, "i");
+    const filter = allPokemons.filter( pokemon => expression.test(pokemon.name))
+    if(filter.length < 1)throw Error('Not found')
+    return filter
 
-    //buscamos en la db 
-    let dataDB = await Pokemon.findAll({
-        //traemos los que coincidan con name
-        where:{
-            name: {
-                //traemos los que contengan name en cualquier parte de la palabra
-                [Op.iLike]: `%${name}%` }
-                
-        },
-        include: {
-            model: Type,
-            attributes: ['name'],
-            through: {
-                attributes: []
-              }
-        }
-    })
-
-    // //hacemos un fetch el cual busca el pokemon por name y se pasa a minuscula
-    const res = await fetch(`${URL_API}${name.toLowerCase()}`)
-
-    // //si no encuentra nada en la db y en la api manejamos el error
-    if(dataDB.length === 0 && res.status === 404)
-    throw Error('Pokemons not found')
-
-    if(res.status === 404) return dataDB
-    
-    const dataRaw = await res.json()
-
-    // //limpiamos la data con la funcion cleanPokemon
-    const dataApi = [cleanPokemon(dataRaw)]
-
-    // //juntamos los datos de la db con los de la api
-    const data = [...dataDB, ...dataApi]
-
-    // //retornamos la data
-    return data
 }
 
 // POST POKEMONS
@@ -150,21 +117,29 @@ const postPokemons = async ( name, image, health, attack, defense, speed, height
 // PUT POKEMONS
 const putPokemons = async (id, name, image, health, attack, defense, speed, height, weight, types) => {
 
-    //editamos los valores con el metodo update
-    await Pokemon.update({
-        name,
-        image,
-        health,
-        attack,
-        defense,
-        speed,
-        height,
-        weight,
-        types
-    },{
-        where: { id }
+    const pokemon = await Pokemon.findOne({
+        where: { id },
+        include: {
+            model: Type,
+            attributes: ['name'],
+            through:{
+                attributes: []
+            }
+        }
     })
-    
+
+    pokemon.name = name
+    pokemon.image = image
+    pokemon.health = health
+    pokemon.attack = attack
+    pokemon.defense = defense
+    pokemon.speed = speed
+    pokemon.height = height
+    pokemon.weight = weight
+    pokemon.types = types
+
+    await pokemon.save()
+
     //retornamos un mensaje indicando que todo salio bien
     return 'The Pokemon was edited successfully'
 }
@@ -198,7 +173,7 @@ const getTypes = async () => {
 
 
 module.exports = {
-    getPokemos,
+    getPokemons,
     getPokemosById,
     getPokemosByName,
     postPokemons,

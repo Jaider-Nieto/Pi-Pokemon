@@ -1,7 +1,6 @@
 import style from './Nav.module.css';
 import { useNavigate } from "react-router-dom";
 import { SearchBar } from "../index";
-import { useDispatch } from "react-redux";
 import { MdOutlineCatchingPokemon } from 'react-icons/md'
 
 const Nav = () => {

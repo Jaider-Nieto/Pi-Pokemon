@@ -13,7 +13,10 @@ import {
     FILTER_TYPES,
     FILTER_API,
     FILTER_DB,
-    RESET
+    RESET,
+    RESET_MSG,
+    RESET_NAME,
+    RESET_DETAIL
 } from './actions-types';
 
 export const getPokemons = (name) => {
@@ -27,6 +30,7 @@ export const getPokemons = (name) => {
 export const getPokemonsByName = (name) => {
     return async function(dispatch) {
         const res = await fetch(`http://localhost:3001/pokemons?name=${name}`)
+        console.log(res)
         const data = await res.json()
         dispatch({ type: GET_POKEMONS_NAME, payload: data })
     }
@@ -146,5 +150,23 @@ export const filterByDB = (state) => {
 export const reset  = () => {
     return function(dispatch) {
         dispatch({ type: RESET, payload: '' })
+    }
+}
+
+export const resetMsg  = () => {
+    return function(dispatch) {
+        dispatch({ type: RESET_MSG, payload: '' })
+    }
+}
+
+export const resetName  = () => {
+    return function(dispatch) {
+        dispatch({ type: RESET_NAME, payload: '' })
+    }
+}
+
+export const resetDetail  = () => {
+    return function(dispatch) {
+        dispatch({ type: RESET_DETAIL, payload: '' })
     }
 }

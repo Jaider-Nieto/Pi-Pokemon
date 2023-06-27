@@ -1,0 +1,13 @@
+.notFound{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+    margin-top: 10rem;
+    font-size: 6rem;
+    width: 90%;
+    padding: 2rem;
+    background-color: #4856d3;
+    outline: 4px solid #000;
+    box-shadow: 0 0 20px #000, 0 0 20px #000;
+}

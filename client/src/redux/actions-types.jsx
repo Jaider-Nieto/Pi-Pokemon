@@ -14,4 +14,7 @@ export const FILTER_TYPES = 'FILTER_TYPES'
 export const FILTER_API = 'FILTER_API'
 export const FILTER_DB = 'FILTER_DB'
 export const RESET = 'RESET'
+export const RESET_MSG = 'RESET_MSG'
+export const RESET_NAME = 'RESET_NAME'
+export const RESET_DETAIL = 'RESET_DETAIL'
 

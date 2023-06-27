@@ -27,6 +27,10 @@
     font-size: 2.5rem;
     width: 7rem;
     outline: 3px dashed #000;
+    cursor: pointer;
+}
+.select:hover{
+    background: linear-gradient(to top, #fff, #aaa);
 }
 .options{
     height: 100%;
@@ -43,4 +47,7 @@
     width: auto;
     padding: .5rem .5rem;
     outline: 3px dashed #000;
+}
+.icon:hover{
+    background: linear-gradient(to top, #fff, #aaa);
 }

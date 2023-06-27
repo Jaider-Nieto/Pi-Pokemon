@@ -11,6 +11,8 @@ import Paged from "./Paged/Paged";
 import Type from "./Type/Type";
 import Filters from "./Filters/Filters";
 import Loading from "./Loading/Loading";
+import Message from "./Message/Message";
+import NotFound from "./NotFound/NotFound";
 
 export {
     LandingPage,
@@ -26,4 +28,6 @@ export {
     Type,
     Filters,
     Loading,
+    Message,
+    NotFound,
 }

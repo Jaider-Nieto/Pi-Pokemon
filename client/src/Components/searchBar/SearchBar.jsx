@@ -2,7 +2,7 @@ import style from './SearchBar.module.css'
 import { useState } from "react";
 import { CiSearch } from "react-icons/ci";
 import { useDispatch } from "react-redux";
-import { getPokemonsByName } from "../../redux/actions";
+import { getPokemonsByName, resetName } from "../../redux/actions";
 import { useNavigate } from "react-router-dom";
 
 const SearchBar = () => {
@@ -16,6 +16,7 @@ const SearchBar = () => {
 
   const handleSubmit = () => {
     if (name === "") return;
+    dispatch(resetName());
     dispatch(getPokemonsByName(name));
     navigate("/search");
     setName("");

@@ -1,0 +1,65 @@
+.edit{
+    outline: 3px solid #000;
+    background-color: #338939;
+    color: #fff;
+    position: fixed;
+    top: -5rem;
+    left: 25rem;
+    font-size: 3rem;
+    width: auto;
+    height: 5rem;
+    text-align: center;
+    padding: 1rem 2rem;
+    display: flex;
+    align-items: center;
+    animation: msg 4s linear;
+}
+.delete{
+    outline: 3px solid #000;
+    background-color: #9d1414;
+    color: #fff;
+    position: fixed;
+    top: -5rem;
+    left: 25rem;
+    font-size: 3rem;
+    width: auto;
+    height: 5rem;
+    text-align: center;
+    padding: 1rem 2rem;
+    display: flex;
+    align-items: center;
+    animation: msg 4s linear;
+    z-index: 99;
+}
+.create{
+    outline: 3px solid #000;
+    background-color: #4d4d4d;
+    color: #fff;
+    position: fixed;
+    top: -5rem;
+    left: 25rem;
+    font-size: 3rem;
+    width: auto;
+    height: 5rem;
+    text-align: center;
+    padding: 1rem 2rem;
+    display: flex;
+    align-items: center;
+    animation: msg 4s linear;
+    z-index: 99;
+}
+
+@keyframes msg{
+    0%{
+        top:-5rem
+    }
+    30%{
+        top:4rem
+    }
+    60%{
+        top:4rem
+    }
+    100%{
+        top: -5rem
+    }
+}

@@ -6,6 +6,7 @@ import handleError from "../validations";
 import {
   getPokemons,
   getPokemonsById,
+  getTypes,
   postPokemons,
   putPokemons,
 } from "../../redux/actions";
@@ -87,7 +88,8 @@ const Form = () => {
     if (location === `/edit/${param}`) {
       pokemon.id = detail.id;
       dispatch(putPokemons(pokemon));
-      dispatch(getPokemons())
+      dispatch(getPokemons());
+      dispatch(getTypes());
       setPokemon({
         id: "",
         name: "",
@@ -100,10 +102,12 @@ const Form = () => {
         weight: "",
         types: [],
       });
-      navigate(`/detail/${param}`)
-      return
+      navigate(`/detail/${param}`);
+      return;
     }
     dispatch(postPokemons(pokemon));
+    dispatch(getPokemons());
+    dispatch(getTypes());
     setPokemon({
       name: "",
       image: "",
@@ -119,7 +123,11 @@ const Form = () => {
   };
   return (
     <form className={style.container} onSubmit={handleSubmit}>
-      <h2 className={style.title}>{ location === `/edit/${param}` ? 'Edit Your Pokemon' : 'Create Your Pokemon' }</h2>
+      <h2 className={style.title}>
+        {location === `/edit/${param}`
+          ? "Edit Your Pokemon"
+          : "Create Your Pokemon"}
+      </h2>
       <label className={style.labelLeft}>name:</label>
       <input
         className={style.inputLeft}
@@ -239,25 +247,25 @@ const Form = () => {
       </div>
 
       <button
-        disabled={ 
-          error.name || 
-          error.image || 
-          error.health || 
-          error.attack || 
-          error.defense || 
-          error.speed || 
-          error.height || 
-          pokemon.name === '' || 
-          pokemon.image === '' || 
-          pokemon.health === '' || 
-          pokemon.attack === '' || 
-          pokemon.defense === '' || 
-          pokemon.speed === '' || 
-          pokemon.height === '' ||
+        disabled={
+          error.name ||
+          error.image ||
+          error.health ||
+          error.attack ||
+          error.defense ||
+          error.speed ||
+          error.height ||
+          pokemon.name === "" ||
+          pokemon.image === "" ||
+          pokemon.health === "" ||
+          pokemon.attack === "" ||
+          pokemon.defense === "" ||
+          pokemon.speed === "" ||
+          pokemon.height === "" ||
           pokemon.types.length === 0
         }
-
-        className={style.button}>
+        className={style.button}
+      >
         {location === `/edit/${param}` ? "edit" : "create"}
       </button>
     </form>
